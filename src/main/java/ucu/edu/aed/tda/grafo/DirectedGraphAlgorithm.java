@@ -1,9 +1,14 @@
 package ucu.edu.aed.tda.grafo;
 
+import java.util.Deque;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.function.Consumer;
 
 import ucu.edu.aed.tda.grafo.model.IGraph;
+import ucu.edu.aed.tda.grafo.model.edge.Edge;
 import ucu.edu.aed.tda.grafo.model.edge.WeightedEdge;
 import ucu.edu.aed.tda.grafo.model.result.IDijkstraResult;
 import ucu.edu.aed.tda.grafo.model.result.IFloydWarshallResult;
@@ -51,14 +56,44 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
 
     @Override
     public <V, D> void recorridoEnProfundidad(IGraph<V, D> grafo, Comparable<V> sourceCriteria, Consumer<V> consumer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recorridoEnProfundidad'");
+        Deque<V> vecinos = new LinkedList<V>();
+        HashSet<V> visitados = new HashSet<V>();
+
+        visitados.add(grafo.buscarVertice(sourceCriteria));
+        vecinos.add(grafo.buscarVertice(sourceCriteria));
+        while (vecinos.size() != 0)
+        {
+            V vertice = vecinos.pop();
+            for (Edge<V, D> ver : grafo.adyacencias(grafo.construirComparable(vertice))) {
+                if (!visitados.contains(ver.target()))
+                {
+                    vecinos.add(ver.target());
+                }
+            }
+            consumer.accept(vertice);
+            visitados.add(vertice);
+        }
     }
 
     @Override
     public <V, D> void recorridoEnAmplitud(IGraph<V, D> grafo, Comparable<V> sourceCriteria, Consumer<V> consumer) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'recorridoEnAmplitud'");
+        Queue<V> vecinos = new LinkedList<V>();
+        HashSet<V> visitados = new HashSet<V>();
+
+        visitados.add(grafo.buscarVertice(sourceCriteria));
+        vecinos.add(grafo.buscarVertice(sourceCriteria));
+        while (vecinos.size() != 0)
+        {
+            V vertice = vecinos.poll();
+            for (Edge<V, D> ver : grafo.adyacencias(grafo.construirComparable(vertice))) {
+                if (!visitados.contains(ver.target()))
+                {
+                    vecinos.add(ver.target());
+                }
+            }
+            consumer.accept(vertice);
+            visitados.add(vertice);
+        }
     }
 
     @Override
