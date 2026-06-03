@@ -17,7 +17,7 @@ import java.util.Set;
  * @param <V> tipo de los vertices
  * @param <D> tipo del dato almacenado en cada arista
  */
-public class DirectedGraph<V, D> implements IGraph<V, D> {
+public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     /**
      * Lista de adyacencia del grafo.
@@ -38,17 +38,38 @@ public class DirectedGraph<V, D> implements IGraph<V, D> {
 
     @Override
     public boolean agregarVertice(V vertex) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+       if (vertex !=null && !ListaAdyacencia.containsKey(vertex)) {
+           ListaAdyacencia.put(vertex, new HashSet<>());
+           return true;
+       }
+         return false;
     }
 
     @Override
     public V buscarVertice(Comparable<V> criterio) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+       if (criterio != null) {
+        for(V vertice : ListaAdyacencia.keySet()) {
+            if (criterio.compareTo(vertice) == 0) {
+                return vertice;
+            }
+        }
+       }
+       return null;
     }
 
     @Override
     public boolean agregarArista(V source, V target, D dato) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        if (source != null && target != null && dato != null) {
+            if (ListaAdyacencia.containsKey(source) && ListaAdyacencia.containsKey(target)){
+                Edge<V,D> arista = new DirectedEdge<>(source, target, dato);
+                if (!aristas.contains(arista)){
+                    ListaAdyacencia.get(source).add(arista);
+                    aristas.add(arista);
+                    return true;
+                }
+            }
+        }
+        return false;
     }
 
     @Override
@@ -63,7 +84,7 @@ public class DirectedGraph<V, D> implements IGraph<V, D> {
 
     @Override
     public Set<V> vertices() {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+       return new HashSet<>(ListaAdyacencia.keySet());
     }
 
     @Override
@@ -100,12 +121,25 @@ public class DirectedGraph<V, D> implements IGraph<V, D> {
 
     @Override
     public void vaciar() {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        ListaAdyacencia.clear();
+        aristas.clear();
     }
 
     @Override
     public boolean tieneCiclos() {
         throw new UnsupportedOperationException("Metodo no implementado todavia");
+    }
+
+    @Override
+    public Set successors(Comparable criteria) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'successors'");
+    }
+
+    @Override
+    public Set predecessors(Comparable criteria) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'predecessors'");
     }
 
 }
