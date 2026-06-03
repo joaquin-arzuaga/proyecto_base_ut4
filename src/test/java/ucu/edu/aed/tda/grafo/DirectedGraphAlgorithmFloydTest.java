@@ -64,6 +64,99 @@ class DirectedGraphAlgorithmFloydTest {
         assertEquals(List.of("A", "B", "C"), result.getPath("A", "C"));
     }
 
+    @Test
+    void floydConGrafoVacioNoFalla() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+
+        IFloydWarshallResult<String> result = algorithms.floyd(grafo);
+
+        assertEquals(Double.POSITIVE_INFINITY, result.getCost("A", "B"));
+        assertFalse(result.connected("A", "B"));
+        assertTrue(result.getPath("A", "B").isEmpty());
+    }
+
+    @Test
+    void floydConUnSoloVertice() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        grafo.agregarVertice("A");
+
+        IFloydWarshallResult<String> result = algorithms.floyd(grafo);
+
+        assertEquals(0.0, result.getCost("A", "A"), 0.0001);
+        assertTrue(result.connected("A", "A"));
+        assertEquals(List.of("A"), result.getPath("A", "A"));
+    }
+
+    @Test
+    void floydRespetaDireccionDeAristas() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        grafo.agregarVertices(List.of("A", "B"));
+
+        grafo.agregarArista("A", "B", new WeightedEdge(5));
+
+        IFloydWarshallResult<String> result = algorithms.floyd(grafo);
+
+        assertEquals(5.0, result.getCost("A", "B"), 0.0001);
+        assertEquals(List.of("A", "B"), result.getPath("A", "B"));
+
+        assertEquals(Double.POSITIVE_INFINITY, result.getCost("B", "A"));
+        assertFalse(result.connected("B", "A"));
+        assertTrue(result.getPath("B", "A").isEmpty());
+    }
+
+    @Test
+    void floydSoportaAristasConPesoCero() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        grafo.agregarVertices(List.of("A", "B", "C"));
+
+        grafo.agregarArista("A", "B", new WeightedEdge(0));
+        grafo.agregarArista("B", "C", new WeightedEdge(0));
+
+        IFloydWarshallResult<String> result = algorithms.floyd(grafo);
+
+        assertEquals(0.0, result.getCost("A", "C"), 0.0001);
+        assertEquals(List.of("A", "B", "C"), result.getPath("A", "C"));
+    }
+
+    @Test
+    void floydSoportaPesosNegativosSinCicloNegativo() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        grafo.agregarVertices(List.of("A", "B", "C"));
+
+        grafo.agregarArista("A", "B", new WeightedEdge(4));
+        grafo.agregarArista("B", "C", new WeightedEdge(-2));
+        grafo.agregarArista("A", "C", new WeightedEdge(10));
+
+        IFloydWarshallResult<String> result = algorithms.floyd(grafo);
+
+        assertEquals(2.0, result.getCost("A", "C"), 0.0001);
+        assertEquals(List.of("A", "B", "C"), result.getPath("A", "C"));
+    }
+
+    @Test
+    void floydMantieneCostoCeroHaciaElMismoVerticeAunqueExistaAutoAristaPositiva() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        grafo.agregarVertice("A");
+
+        grafo.agregarArista("A", "A", new WeightedEdge(5));
+
+        IFloydWarshallResult<String> result = algorithms.floyd(grafo);
+
+        assertEquals(0.0, result.getCost("A", "A"), 0.0001);
+        assertEquals(List.of("A"), result.getPath("A", "A"));
+    }
+
+    @Test
+    void floydConVerticesInexistentesRetornaInfinitoYCaminoVacio() {
+        DirectedGraph<String, WeightedEdge> grafo = crearGrafoBase();
+
+        IFloydWarshallResult<String> result = algorithms.floyd(grafo);
+
+        assertEquals(Double.POSITIVE_INFINITY, result.getCost("X", "Y"));
+        assertFalse(result.connected("X", "Y"));
+        assertTrue(result.getPath("X", "Y").isEmpty());
+    }
+
     private DirectedGraph<String, WeightedEdge> crearGrafoBase() {
         DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
         grafo.agregarVertices(List.of("A", "B", "C", "D", "E"));
