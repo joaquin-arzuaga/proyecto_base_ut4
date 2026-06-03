@@ -4,6 +4,7 @@ import ucu.edu.aed.tda.grafo.model.IGraph;
 import ucu.edu.aed.tda.grafo.model.edge.DirectedEdge;
 import ucu.edu.aed.tda.grafo.model.edge.Edge;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -73,7 +74,14 @@ public class DirectedGraph<V, D> implements IGraph<V, D> {
 
     @Override
     public boolean eliminarArista(Comparable<V> source, Comparable<V> target) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        Edge<V,D> arustaAEliminar = obtenerArista(source, target);
+        if(arustaAEliminar == null){
+            return false;
+        }
+        ListaAdyacencia.get(arustaAEliminar.source()).remove(arustaAEliminar)
+        aristas.remove(arustaAEliminar);
+        
+        return true;
     }
 
     @Override
@@ -88,22 +96,37 @@ public class DirectedGraph<V, D> implements IGraph<V, D> {
 
     @Override
     public Set<Edge<V, D>> aristas() {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        return new HashSet<>(aristas);
     }
 
     @Override
     public boolean existeArista(Comparable<V> sourceCriteria, Comparable<V> targetCriteria) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        return obtenerArista(sourceCriteria, targetCriteria) !=null;
     }
 
     @Override
     public Edge<V, D> obtenerArista(Comparable<V> sourceCriteria, Comparable<V> targetCriteria) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        if (sourceCriteria == null || targetCriteria == null){
+            return null;
+        }
+        for (Edge<V, D> arista: aristas){
+            if (sourceCriteria.compareTo(arista.source())==0 && targetCriteria.compareTo(arista.target())==0){
+                return arista;
+            }
+        }
+        return null;
     }
 
     @Override
     public List<Edge<V, D>> adyacencias(Comparable<V> verticeCriteria) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        if (verticeCriteria == null){
+            return new ArrayList<>();
+        }
+        V vertice = buscarVertice(verticeCriteria);
+        if (vertice == null){
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(ListaAdyacencia.get(vertice));
     }
 
     @Override
