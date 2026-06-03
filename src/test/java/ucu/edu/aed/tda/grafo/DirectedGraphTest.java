@@ -142,5 +142,25 @@ public class DirectedGraphTest {
         assertTrue(resultado.contains("B"));
         assertFalse(resultado.contains("C"));
         assertTrue(resultado.size() == 2);
+    public void testEsConexo() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        grafo.agregarVertice("A");
+        grafo.agregarVertice("B");
+        grafo.agregarVertice("C");
+        grafo.agregarArista("A", "B", new WeightedEdge(1.0));
+        grafo.agregarArista("B", "C", new WeightedEdge(1.0));
+        grafo.agregarArista("C", "A", new WeightedEdge(1.0));
+        assertTrue(grafo.esConexo());
+    }
+
+    @Test
+    public void testNoEsConexo() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        grafo.agregarVertice("A");
+        grafo.agregarVertice("B");
+        grafo.agregarVertice("C");
+        grafo.agregarArista("A", "B", new WeightedEdge(1.0));
+        grafo.agregarArista("B", "C", new WeightedEdge(1.0));
+        assertFalse(grafo.esConexo());
     }
 }

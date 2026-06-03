@@ -1,5 +1,6 @@
 package ucu.edu.aed.tda.grafo;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Deque;
 import java.util.HashMap;
@@ -112,8 +113,42 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
 
     @Override
     public <V, D extends WeightedEdge> IFloydWarshallResult<V> warshall(IDirectedIGraph<V, D> grafo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'warshall'");
+        Map<V, Map<V, Double>> costs = new HashMap<>();
+        Map<V, Map<V, V>>      next  = new HashMap<>();
+
+        for (V v : grafo.vertices()) {
+            costs.put(v, new HashMap<>());
+            next.put(v, new HashMap<>());
+            costs.get(v).put(v, 0.0);
+            next.get(v).put(v, v);
+        }
+
+        for (Edge<V, D> arista : grafo.aristas()) {
+            V s = arista.source();
+            V t = arista.target();
+            costs.get(s).put(t, arista.dato().getWeight());
+            next.get(s).put(t, t);
+        }
+
+        List<V> vertices = new ArrayList<>(grafo.vertices());
+        for (V k : vertices) {
+            for (V i : vertices) {
+                for (V j : vertices) {
+                    Double ik = costs.get(i).get(k);
+                    Double kj = costs.get(k).get(j);
+                    if (ik != null && kj != null) {
+                        Double ij = costs.get(i).get(j);
+                        double newCost = ik + kj;
+                        if (ij == null || newCost < ij) {
+                            costs.get(i).put(j, newCost);
+                            next.get(i).put(j, next.get(i).get(k));
+                        }
+                    }
+                }
+            }
+        }
+
+        return new FloydWarshallResult<>(costs, next);
     }
 
     private <V> Map<V, Map<V, Double>> inicializarCostos(Set<V> vertices) {
@@ -174,9 +209,42 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
     @Override
     public <V, D extends WeightedEdge> List<Path<V>> obtenerTodosLosCaminos(Comparable<V> source, Comparable<V> target,
             IGraph<V, D> grafo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerTodosLosCaminos'");
+        
+        List<Path<V>> caminos = new LinkedList<>();
+        V origen = grafo.buscarVertice(source);
+        V destino = grafo.buscarVertice(target);
+
+        if (origen == null || destino == null) {
+        return caminos;
+        }
+
+        LinkedList<V> caminoActual = new LinkedList<>();
+        Set<V> visitados = new HashSet<>();
+        buscarCaminos(origen, destino, grafo, caminoActual, visitados, caminos, 0);
+        return caminos;
     }
+
+    private <V, D extends WeightedEdge> void buscarCaminos(V actual, V destino, IGraph<V, D> grafo,
+        LinkedList<V> caminoActual, Set<V> visitados, List<Path<V>> caminos, double costo) {
+        caminoActual.add(actual);
+        visitados.add(actual);
+
+        if (actual.equals(destino)) {
+        caminos.add(new Path<V>(new LinkedList<V>(caminoActual), costo));
+        } else {
+            for (Edge<V, D> arista : grafo.adyacencias(grafo.construirComparable(actual))) {
+            V siguiente = arista.target();
+            if (!visitados.contains(siguiente)) {
+                buscarCaminos(siguiente, destino, grafo, caminoActual, visitados, caminos,
+                        costo + arista.dato().getWeight());
+                }
+            }
+        }
+
+        caminoActual.removeLast();
+        visitados.remove(actual);
+    }
+
 
     @Override
     public <V, D> void recorridoEnProfundidad(IGraph<V, D> grafo, Comparable<V> sourceCriteria, Consumer<V> consumer) {
@@ -222,8 +290,36 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
 
     @Override
     public <V, D> List<V> calcularClasificacionTopologica(IDirectedIGraph<V, D> grafo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'calcularClasificacionTopologica'");
+        HashMap<V, Integer> aristasEntrantes = new HashMap<V, Integer>();
+        Queue<V> grado = new LinkedList<V>();
+        List<V> result = new LinkedList<V>();
+        for (V vertice : grafo.vertices()) {
+            aristasEntrantes.put(vertice, 0);
+        }
+        for (Edge<V, D> arista : grafo.aristas()) {
+            V vertice = arista.target();
+            aristasEntrantes.put(vertice, aristasEntrantes.getOrDefault(vertice, 0) + 1);
+        }
+        for (V vertice : aristasEntrantes.keySet()) {
+            if (aristasEntrantes.get(vertice) == 0) {
+                grado.add(vertice);
+            }
+        }
+        while (!grado.isEmpty()) {
+            V sacada = grado.poll();
+            aristasEntrantes.remove(sacada);
+            result.add(sacada);
+            for (Edge<V, D> arist : grafo.adyacencias(grafo.construirComparable(sacada))) {
+                V ver = arist.target();
+                aristasEntrantes.put(ver, aristasEntrantes.getOrDefault(ver, 0) - 1);
+            }
+            for (V vertice : aristasEntrantes.keySet()) {
+                if (aristasEntrantes.get(vertice) == 0) {
+                    grado.add(vertice);
+                }
+            }
+        }
+        return result;
     }
 
 }

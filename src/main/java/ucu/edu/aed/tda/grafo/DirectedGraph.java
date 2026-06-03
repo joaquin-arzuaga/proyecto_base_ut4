@@ -4,8 +4,10 @@ import ucu.edu.aed.tda.grafo.model.IGraph;
 import ucu.edu.aed.tda.grafo.model.edge.DirectedEdge;
 import ucu.edu.aed.tda.grafo.model.edge.Edge;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -73,12 +75,38 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public boolean eliminarArista(Comparable<V> source, Comparable<V> target) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        Edge<V,D> arustaAEliminar = obtenerArista(source, target);
+        if(arustaAEliminar == null){
+            return false;
+        }
+        ListaAdyacencia.get(arustaAEliminar.source()).remove(arustaAEliminar)
+        aristas.remove(arustaAEliminar);
+        
+        return true;
     }
 
     @Override
     public boolean removerVertice(Comparable<V> criteria) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        if(criteria == null){
+            return false;
+        }
+        V vertice = buscarVertice(criteria);
+        Set<Edge<V,D>> aristasSalientesDelVertice = new HashSet<>(ListaAdyacencia.get(vertice));
+        for(Edge<V, D> arista : aristasSalientesDelVertice){
+            aristas.remove(arista);
+        }
+        ListaAdyacencia.remove(vertice);
+        for(Set<Edge<V,D>> adyacentes : ListaAdyacencia.values()){
+            Set<Edge<V,D>> adyacenteAEliminar = new HashSet<>();
+            for(Edge<V,D> arista: adyacentes){
+                if(arista.target().equals(vertice)){
+                    adyacenteAEliminar.add(arista);
+                    aristas.remove(arista);
+                }
+            }
+            adyacentes.removeAll(adyacenteAEliminar);
+        }
+        return true;
     }
 
     @Override
@@ -88,27 +116,49 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public Set<Edge<V, D>> aristas() {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        return new HashSet<>(aristas);
     }
 
     @Override
     public boolean existeArista(Comparable<V> sourceCriteria, Comparable<V> targetCriteria) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        return obtenerArista(sourceCriteria, targetCriteria) !=null;
     }
 
     @Override
     public Edge<V, D> obtenerArista(Comparable<V> sourceCriteria, Comparable<V> targetCriteria) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        if (sourceCriteria == null || targetCriteria == null){
+            return null;
+        }
+        for (Edge<V, D> arista: aristas){
+            if (sourceCriteria.compareTo(arista.source())==0 && targetCriteria.compareTo(arista.target())==0){
+                return arista;
+            }
+        }
+        return null;
     }
 
     @Override
     public List<Edge<V, D>> adyacencias(Comparable<V> verticeCriteria) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        if (verticeCriteria == null){
+            return new ArrayList<>();
+        }
+        V vertice = buscarVertice(verticeCriteria);
+        if (vertice == null){
+            return new ArrayList<>();
+        }
+        return new ArrayList<>(ListaAdyacencia.get(vertice));
     }
 
     @Override
     public boolean esConexo() {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        HashSet<V> visitados =  new HashSet<V>();
+        DirectedGraphAlgorithm algorithm = new DirectedGraphAlgorithm();
+        for (V vertice : vertices()) {
+            visitados.clear();
+            algorithm.recorridoEnProfundidad(this, construirComparable(vertice), v -> visitados.add(v));
+            if (visitados.size() != vertices().size()) return false;
+        }
+        return true;
     }
 
     @Override
@@ -119,8 +169,39 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public boolean tieneCiclos() {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        Set<V> visitados = new HashSet<>();
+        Set<V> enCamino = new HashSet<>();
+
+        for (V vertice : ListaAdyacencia.keySet()) {
+            if (!visitados.contains(vertice)) {
+                if (tieneCiclosDesde(vertice, visitados, enCamino)) {
+                    return true;
+                }
+            }
+        }
+
+      return false;
     }
+
+    private boolean tieneCiclosDesde(V vertice, Set<V> visitados, Set<V> enCamino) {
+    visitados.add(vertice);
+    enCamino.add(vertice);
+
+    for (Edge<V, D> arista : ListaAdyacencia.get(vertice)) {
+        V destino = arista.target();
+        if (!visitados.contains(destino)) {
+            if (tieneCiclosDesde(destino, visitados, enCamino)) {
+                return true;
+            }
+        } else if (enCamino.contains(destino)) {
+            return true;
+        }
+    }
+
+       enCamino.remove(vertice);
+       return false; 
+    }
+
 
     @Override
     public Set successors(Comparable criteria) {
