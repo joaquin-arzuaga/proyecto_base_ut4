@@ -86,7 +86,26 @@ public class DirectedGraph<V, D> implements IGraph<V, D> {
 
     @Override
     public boolean removerVertice(Comparable<V> criteria) {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        if(criteria == null){
+            return false;
+        }
+        V vertice = buscarVertice(criteria);
+        Set<Edge<V,D>> aristasSalientesDelVertice = new HashSet<>(ListaAdyacencia.get(vertice));
+        for(Edge<V, D> arista : aristasSalientesDelVertice){
+            aristas.remove(arista);
+        }
+        ListaAdyacencia.remove(vertice);
+        for(Set<Edge<V,D>> adyacentes : ListaAdyacencia.values()){
+            Set<Edge<V,D>> adyacenteAEliminar = new HashSet<>();
+            for(Edge<V,D> arista: adyacentes){
+                if(arista.target().equals(vertice)){
+                    adyacenteAEliminar.add(arista);
+                    aristas.remove(arista);
+                }
+            }
+            adyacentes.removeAll(adyacenteAEliminar);
+        }
+        return true;
     }
 
     @Override
