@@ -142,15 +142,33 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
 
     @Override
     public <V, D extends WeightedEdge> V obtenerCentroGrafo(IDirectedIGraph<V, D> grafo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerCentroGrafo'");
+        V centro = null;
+        double menorExcentricidad = Double.POSITIVE_INFINITY;
+
+        for (V vertice : grafo.vertices()) {
+            double excentricidad = obtenerExcentricidad(grafo, grafo.construirComparable(vertice));
+            if (excentricidad < menorExcentricidad) {
+                menorExcentricidad = excentricidad;
+                centro = vertice;
+            }
+        }
+
+        return centro;
     }
 
     @Override
-    public <V, D extends WeightedEdge> double obtenerExcentricidad(IDirectedIGraph<V, D> grafo,
-            Comparable<V> vertexCriteria) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerExcentricidad'");
+    public <V, D extends WeightedEdge> double obtenerExcentricidad(IDirectedIGraph<V, D> grafo, Comparable<V> vertexCriteria) {
+        V vertice = grafo.buscarVertice(vertexCriteria);
+        if (vertice == null) {
+            throw new IllegalArgumentException("El vertice no existe en el grafo");
+        }
+
+        IFloydWarshallResult<V> resultado = floyd(grafo);
+        double excentricidad = 0.0;
+        for (V destino : grafo.vertices()) {
+            excentricidad = Math.max(excentricidad, resultado.getCost(vertice, destino));
+        }
+        return excentricidad;
     }
 
     @Override
