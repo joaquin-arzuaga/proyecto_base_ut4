@@ -79,7 +79,7 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
         if(arustaAEliminar == null){
             return false;
         }
-        ListaAdyacencia.get(arustaAEliminar.source()).remove(arustaAEliminar)
+        ListaAdyacencia.get(arustaAEliminar.source()).remove(arustaAEliminar);
         aristas.remove(arustaAEliminar);
         
         return true;
