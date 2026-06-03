@@ -157,13 +157,12 @@ public <V, D extends WeightedEdge> IFloydWarshallResult<V> warshall(IDirectedIGr
             V sacada = grado.poll();
             aristasEntrantes.remove(sacada);
             result.add(sacada);
-            for (Edge <V, D> arist : grafo.adyacencias(grafo.construirComparable(sacada))) {
+            for (Edge<V, D> arist : grafo.adyacencias(grafo.construirComparable(sacada))) {
                 V ver = arist.target();
-                aristasEntrantes.put(ver, aristasEntrantes.getOrDefault(ver, 0) - 1);
-            }
-            for (V vertice : aristasEntrantes.keySet()) {
-                if (aristasEntrantes.get(vertice) == 0) {
-                    grado.add(vertice);
+                int nuevoGrado = aristasEntrantes.getOrDefault(ver, 0) - 1;
+                aristasEntrantes.put(ver, nuevoGrado);
+                if (nuevoGrado == 0) {
+                    grado.add(ver);
                 }
             }
         }
