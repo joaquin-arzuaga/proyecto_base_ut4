@@ -123,13 +123,13 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
     }
 
     @Override
-    public Set<V> successors(Comparable<V> criteria) {
+    public Set successors(Comparable criteria) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'successors'");
     }
 
     @Override
-    public Set<V> predecessors(Comparable<V> criteria) {
+    public Set predecessors(Comparable criteria) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'predecessors'");
     }
