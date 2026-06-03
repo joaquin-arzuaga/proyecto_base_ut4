@@ -23,7 +23,7 @@ class DirectedGraphAlgorithmFloydTest {
         assertEquals(1.0, result.getCost("A", "C"), 0.0001); // A -> C
         assertEquals(4.0, result.getCost("A", "D"), 0.0001); // A -> C -> B -> D
         assertEquals(7.0, result.getCost("A", "E"), 0.0001); // A -> C -> B -> D -> E
-        assertEquals(5.0, result.getCost("C", "E"), 0.0001); // C -> B -> D -> E
+        assertEquals(6.0, result.getCost("C", "E"), 0.0001); // C -> B -> D -> E
 
         assertEquals(List.of("A"), result.getPath("A", "A"));
         assertEquals(List.of("A", "C", "B"), result.getPath("A", "B"));
