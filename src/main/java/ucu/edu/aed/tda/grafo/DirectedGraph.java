@@ -6,6 +6,7 @@ import ucu.edu.aed.tda.grafo.model.edge.Edge;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -108,7 +109,14 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public boolean esConexo() {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        HashSet<V> visitados =  new HashSet<V>();
+        DirectedGraphAlgorithm algorithm = new DirectedGraphAlgorithm();
+        for (V vertice : vertices()) {
+            visitados.clear();
+            algorithm.recorridoEnProfundidad(this, construirComparable(vertice), v -> visitados.add(v));
+            if (visitados.size() != vertices().size()) return false;
+        }
+        return true;
     }
 
     @Override
