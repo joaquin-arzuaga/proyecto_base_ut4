@@ -39,31 +39,31 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public boolean agregarVertice(V vertex) {
-       if (vertex !=null && !ListaAdyacencia.containsKey(vertex)) {
-           ListaAdyacencia.put(vertex, new HashSet<>());
-           return true;
-       }
-         return false;
+        if (vertex != null && !ListaAdyacencia.containsKey(vertex)) {
+            ListaAdyacencia.put(vertex, new HashSet<>());
+            return true;
+        }
+        return false;
     }
 
     @Override
     public V buscarVertice(Comparable<V> criterio) {
-       if (criterio != null) {
-        for(V vertice : ListaAdyacencia.keySet()) {
-            if (criterio.compareTo(vertice) == 0) {
-                return vertice;
+        if (criterio != null) {
+            for (V vertice : ListaAdyacencia.keySet()) {
+                if (criterio.compareTo(vertice) == 0) {
+                    return vertice;
+                }
             }
         }
-       }
-       return null;
+        return null;
     }
 
     @Override
     public boolean agregarArista(V source, V target, D dato) {
         if (source != null && target != null && dato != null) {
-            if (ListaAdyacencia.containsKey(source) && ListaAdyacencia.containsKey(target)){
-                Edge<V,D> arista = new DirectedEdge<>(source, target, dato);
-                if (!aristas.contains(arista)){
+            if (ListaAdyacencia.containsKey(source) && ListaAdyacencia.containsKey(target)) {
+                Edge<V, D> arista = new DirectedEdge<>(source, target, dato);
+                if (!aristas.contains(arista)) {
                     ListaAdyacencia.get(source).add(arista);
                     aristas.add(arista);
                     return true;
@@ -75,31 +75,31 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public boolean eliminarArista(Comparable<V> source, Comparable<V> target) {
-        Edge<V,D> arustaAEliminar = obtenerArista(source, target);
-        if(arustaAEliminar == null){
+        Edge<V, D> arustaAEliminar = obtenerArista(source, target);
+        if (arustaAEliminar == null) {
             return false;
         }
         ListaAdyacencia.get(arustaAEliminar.source()).remove(arustaAEliminar);
         aristas.remove(arustaAEliminar);
-        
+
         return true;
     }
 
     @Override
     public boolean removerVertice(Comparable<V> criteria) {
-        if(criteria == null){
+        if (criteria == null) {
             return false;
         }
         V vertice = buscarVertice(criteria);
-        Set<Edge<V,D>> aristasSalientesDelVertice = new HashSet<>(ListaAdyacencia.get(vertice));
-        for(Edge<V, D> arista : aristasSalientesDelVertice){
+        Set<Edge<V, D>> aristasSalientesDelVertice = new HashSet<>(ListaAdyacencia.get(vertice));
+        for (Edge<V, D> arista : aristasSalientesDelVertice) {
             aristas.remove(arista);
         }
         ListaAdyacencia.remove(vertice);
-        for(Set<Edge<V,D>> adyacentes : ListaAdyacencia.values()){
-            Set<Edge<V,D>> adyacenteAEliminar = new HashSet<>();
-            for(Edge<V,D> arista: adyacentes){
-                if(arista.target().equals(vertice)){
+        for (Set<Edge<V, D>> adyacentes : ListaAdyacencia.values()) {
+            Set<Edge<V, D>> adyacenteAEliminar = new HashSet<>();
+            for (Edge<V, D> arista : adyacentes) {
+                if (arista.target().equals(vertice)) {
                     adyacenteAEliminar.add(arista);
                     aristas.remove(arista);
                 }
@@ -111,7 +111,7 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public Set<V> vertices() {
-       return new HashSet<>(ListaAdyacencia.keySet());
+        return new HashSet<>(ListaAdyacencia.keySet());
     }
 
     @Override
@@ -121,16 +121,16 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public boolean existeArista(Comparable<V> sourceCriteria, Comparable<V> targetCriteria) {
-        return obtenerArista(sourceCriteria, targetCriteria) !=null;
+        return obtenerArista(sourceCriteria, targetCriteria) != null;
     }
 
     @Override
     public Edge<V, D> obtenerArista(Comparable<V> sourceCriteria, Comparable<V> targetCriteria) {
-        if (sourceCriteria == null || targetCriteria == null){
+        if (sourceCriteria == null || targetCriteria == null) {
             return null;
         }
-        for (Edge<V, D> arista: aristas){
-            if (sourceCriteria.compareTo(arista.source())==0 && targetCriteria.compareTo(arista.target())==0){
+        for (Edge<V, D> arista : aristas) {
+            if (sourceCriteria.compareTo(arista.source()) == 0 && targetCriteria.compareTo(arista.target()) == 0) {
                 return arista;
             }
         }
@@ -139,11 +139,11 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public List<Edge<V, D>> adyacencias(Comparable<V> verticeCriteria) {
-        if (verticeCriteria == null){
+        if (verticeCriteria == null) {
             return new ArrayList<>();
         }
         V vertice = buscarVertice(verticeCriteria);
-        if (vertice == null){
+        if (vertice == null) {
             return new ArrayList<>();
         }
         return new ArrayList<>(ListaAdyacencia.get(vertice));
@@ -151,12 +151,13 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public boolean esConexo() {
-        HashSet<V> visitados =  new HashSet<V>();
+        HashSet<V> visitados = new HashSet<V>();
         DirectedGraphAlgorithm algorithm = new DirectedGraphAlgorithm();
         for (V vertice : vertices()) {
             visitados.clear();
             algorithm.recorridoEnProfundidad(this, construirComparable(vertice), v -> visitados.add(v));
-            if (visitados.size() != vertices().size()) return false;
+            if (visitados.size() != vertices().size())
+                return false;
         }
         return true;
     }
@@ -180,39 +181,68 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
             }
         }
 
-      return false;
+        return false;
     }
 
     private boolean tieneCiclosDesde(V vertice, Set<V> visitados, Set<V> enCamino) {
-    visitados.add(vertice);
-    enCamino.add(vertice);
+        visitados.add(vertice);
+        enCamino.add(vertice);
 
-    for (Edge<V, D> arista : ListaAdyacencia.get(vertice)) {
-        V destino = arista.target();
-        if (!visitados.contains(destino)) {
-            if (tieneCiclosDesde(destino, visitados, enCamino)) {
+        for (Edge<V, D> arista : ListaAdyacencia.get(vertice)) {
+            V destino = arista.target();
+            if (!visitados.contains(destino)) {
+                if (tieneCiclosDesde(destino, visitados, enCamino)) {
+                    return true;
+                }
+            } else if (enCamino.contains(destino)) {
                 return true;
             }
-        } else if (enCamino.contains(destino)) {
-            return true;
         }
-    }
 
-       enCamino.remove(vertice);
-       return false; 
-    }
-
-
-    @Override
-    public Set successors(Comparable criteria) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'successors'");
+        enCamino.remove(vertice);
+        return false;
     }
 
     @Override
-    public Set predecessors(Comparable criteria) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'predecessors'");
+    public Set<V> successors(Comparable<V> criteria) {
+        Set<V> sucesores = new HashSet<>();
+
+        if (criteria == null) {
+            return sucesores;
+        }
+
+        V vertice = buscarVertice(criteria);
+        if (vertice == null) {
+            return sucesores;
+        }
+
+        for (Edge<V, D> arista : ListaAdyacencia.get(vertice)) {
+            sucesores.add(arista.target());
+        }
+
+        return sucesores;
+    }
+
+    @Override
+    public Set<V> predecessors(Comparable<V> criteria) {
+        Set<V> predecesores = new HashSet<>();
+
+        if (criteria == null) {
+            return predecesores;
+        }
+
+        V vertice = buscarVertice(criteria);
+        if (vertice == null) {
+            return predecesores;
+        }
+
+        for (Edge<V, D> arista : aristas) {
+            if (arista.target().equals(vertice)) {
+                predecesores.add(arista.source());
+            }
+        }
+
+        return predecesores;
     }
 
 }
