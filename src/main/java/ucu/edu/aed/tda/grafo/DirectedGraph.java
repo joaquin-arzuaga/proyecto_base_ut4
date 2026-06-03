@@ -16,7 +16,7 @@ import java.util.Set;
  * @param <V> tipo de los vertices
  * @param <D> tipo del dato almacenado en cada arista
  */
-public class DirectedGraph<V, D> implements IGraph<V, D> {
+public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     /**
      * Lista de adyacencia del grafo.
@@ -120,6 +120,18 @@ public class DirectedGraph<V, D> implements IGraph<V, D> {
     @Override
     public boolean tieneCiclos() {
         throw new UnsupportedOperationException("Metodo no implementado todavia");
+    }
+
+    @Override
+    public Set<V> successors(Comparable<V> criteria) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'successors'");
+    }
+
+    @Override
+    public Set<V> predecessors(Comparable<V> criteria) {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'predecessors'");
     }
 
 }
