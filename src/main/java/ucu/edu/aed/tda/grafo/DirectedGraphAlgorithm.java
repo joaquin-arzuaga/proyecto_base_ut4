@@ -209,9 +209,42 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
     @Override
     public <V, D extends WeightedEdge> List<Path<V>> obtenerTodosLosCaminos(Comparable<V> source, Comparable<V> target,
             IGraph<V, D> grafo) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'obtenerTodosLosCaminos'");
+        
+        List<Path<V>> caminos = new LinkedList<>();
+        V origen = grafo.buscarVertice(source);
+        V destino = grafo.buscarVertice(target);
+
+        if (origen == null || destino == null) {
+        return caminos;
+        }
+
+        LinkedList<V> caminoActual = new LinkedList<>();
+        Set<V> visitados = new HashSet<>();
+        buscarCaminos(origen, destino, grafo, caminoActual, visitados, caminos, 0);
+        return caminos;
     }
+
+    private <V, D extends WeightedEdge> void buscarCaminos(V actual, V destino, IGraph<V, D> grafo,
+        LinkedList<V> caminoActual, Set<V> visitados, List<Path<V>> caminos, double costo) {
+        caminoActual.add(actual);
+        visitados.add(actual);
+
+        if (actual.equals(destino)) {
+        caminos.add(new Path<V>(new LinkedList<V>(caminoActual), costo));
+        } else {
+            for (Edge<V, D> arista : grafo.adyacencias(grafo.construirComparable(actual))) {
+            V siguiente = arista.target();
+            if (!visitados.contains(siguiente)) {
+                buscarCaminos(siguiente, destino, grafo, caminoActual, visitados, caminos,
+                        costo + arista.dato().getWeight());
+                }
+            }
+        }
+
+        caminoActual.removeLast();
+        visitados.remove(actual);
+    }
+
 
     @Override
     public <V, D> void recorridoEnProfundidad(IGraph<V, D> grafo, Comparable<V> sourceCriteria, Consumer<V> consumer) {

@@ -127,8 +127,39 @@ public class DirectedGraph<V, D> implements IDirectedIGraph<V, D> {
 
     @Override
     public boolean tieneCiclos() {
-        throw new UnsupportedOperationException("Metodo no implementado todavia");
+        Set<V> visitados = new HashSet<>();
+        Set<V> enCamino = new HashSet<>();
+
+        for (V vertice : ListaAdyacencia.keySet()) {
+            if (!visitados.contains(vertice)) {
+                if (tieneCiclosDesde(vertice, visitados, enCamino)) {
+                    return true;
+                }
+            }
+        }
+
+      return false;
     }
+
+    private boolean tieneCiclosDesde(V vertice, Set<V> visitados, Set<V> enCamino) {
+    visitados.add(vertice);
+    enCamino.add(vertice);
+
+    for (Edge<V, D> arista : ListaAdyacencia.get(vertice)) {
+        V destino = arista.target();
+        if (!visitados.contains(destino)) {
+            if (tieneCiclosDesde(destino, visitados, enCamino)) {
+                return true;
+            }
+        } else if (enCamino.contains(destino)) {
+            return true;
+        }
+    }
+
+       enCamino.remove(vertice);
+       return false; 
+    }
+
 
     @Override
     public Set successors(Comparable criteria) {
