@@ -142,6 +142,9 @@ public class DirectedGraphTest {
         assertTrue(resultado.contains("B"));
         assertFalse(resultado.contains("C"));
         assertTrue(resultado.size() == 2);
+        }
+        
+    @Test
     public void testEsConexo() {
         DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
         grafo.agregarVertice("A");
@@ -162,5 +165,29 @@ public class DirectedGraphTest {
         grafo.agregarArista("A", "B", new WeightedEdge(1.0));
         grafo.agregarArista("B", "C", new WeightedEdge(1.0));
         assertFalse(grafo.esConexo());
+    }
+
+    @Test
+    public void testObtenerTodosLosCaminos() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+
+        grafo.agregarVertice("A");
+        grafo.agregarVertice("B");
+        grafo.agregarVertice("C");
+        grafo.agregarVertice("D");
+
+        grafo.agregarArista("A", "B", new WeightedEdge(1.0));
+        grafo.agregarArista("B", "D", new WeightedEdge(1.0));
+        grafo.agregarArista("A", "C", new WeightedEdge(1.0));
+        grafo.agregarArista("C", "D", new WeightedEdge(1.0));
+
+        DirectedGraphAlgorithm algo = new DirectedGraphAlgorithm();
+
+        List<?> caminos = algo.obtenerTodosLosCaminos(
+            grafo.construirComparable("A"),
+            grafo.construirComparable("D"),
+            grafo);
+
+         assertTrue(caminos.size() == 2);
     }
 }
