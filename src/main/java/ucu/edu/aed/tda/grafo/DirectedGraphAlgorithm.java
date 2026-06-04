@@ -313,8 +313,9 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
                 V ver = arist.target();
                 aristasEntrantes.put(ver, aristasEntrantes.getOrDefault(ver, 0) - 1);
             }
-            for (V vertice : aristasEntrantes.keySet()) {
-                if (aristasEntrantes.get(vertice) == 0) {
+            for (V vertice : new ArrayList<>(aristasEntrantes.keySet())) {
+                if (aristasEntrantes.get(vertice) == 0 && !grado.contains(vertice)) {
+                    aristasEntrantes.remove(vertice);
                     grado.add(vertice);
                 }
             }

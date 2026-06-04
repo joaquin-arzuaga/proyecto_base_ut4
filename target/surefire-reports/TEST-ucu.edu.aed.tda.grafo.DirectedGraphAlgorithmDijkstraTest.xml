@@ -1,68 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.069" tests="13" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.097" tests="13" errors="0" skipped="0" failures="0">
   <properties>
-    <property name="java.specification.version" value="25"/>
+    <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
     <property name="sun.jnu.encoding" value="Cp1252"/>
-    <property name="java.class.path" value="C:\Repos\proyecto-base-ut04\target\test-classes;C:\Repos\proyecto-base-ut04\target\classes;C:\Users\jarzu\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\jarzu\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\jarzu\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\jarzu\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\jarzu\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\jarzu\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\jarzu\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\jarzu\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="java.class.path" value="C:\Users\emifa\OneDrive\Documentos\GitHub\problemsetsut3\proyecto_base_ut4\target\test-classes;C:\Users\emifa\OneDrive\Documentos\GitHub\problemsetsut3\proyecto_base_ut4\target\classes;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\emifa\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\emifa\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\emifa\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\emifa\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="java.vm.vendor" value="Eclipse Adoptium"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="user.variant" value=""/>
     <property name="java.vendor.url" value="https://adoptium.net/"/>
     <property name="user.timezone" value="America/Montevideo"/>
     <property name="os.name" value="Windows 11"/>
-    <property name="java.vm.specification.version" value="25"/>
+    <property name="java.vm.specification.version" value="17"/>
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="UY"/>
-    <property name="sun.boot.library.path" value="C:\Users\jarzu\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.2.10-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\jarzu\AppData\Local\Temp\surefire3917693350800987417\surefirebooter-20260603195541388_3.jar C:\Users\jarzu\AppData\Local\Temp\surefire3917693350800987417 2026-06-03T19-55-41_191-jvmRun1 surefire-20260603195541388_1tmp surefire_0-20260603195541388_2tmp"/>
+    <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin"/>
+    <property name="sun.java.command" value="C:\Users\emifa\AppData\Local\Temp\surefire7410530506260016276\surefirebooter-20260603230032323_3.jar C:\Users\emifa\AppData\Local\Temp\surefire7410530506260016276 2026-06-03T23-00-31_066-jvmRun1 surefire-20260603230032323_1tmp surefire_0-20260603230032323_2tmp"/>
     <property name="jdk.debug" value="release"/>
-    <property name="surefire.test.class.path" value="C:\Repos\proyecto-base-ut04\target\test-classes;C:\Repos\proyecto-base-ut04\target\classes;C:\Users\jarzu\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\jarzu\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\jarzu\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\jarzu\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\jarzu\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\jarzu\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\jarzu\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\jarzu\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
+    <property name="surefire.test.class.path" value="C:\Users\emifa\OneDrive\Documentos\GitHub\problemsetsut3\proyecto_base_ut4\target\test-classes;C:\Users\emifa\OneDrive\Documentos\GitHub\problemsetsut3\proyecto_base_ut4\target\classes;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\emifa\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\emifa\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\emifa\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\emifa\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
-    <property name="user.home" value="C:\Users\jarzu"/>
+    <property name="user.home" value="C:\Users\emifa"/>
     <property name="user.language" value="es"/>
     <property name="java.specification.vendor" value="Oracle Corporation"/>
     <property name="java.version.date" value="2026-01-20"/>
-    <property name="java.home" value="C:\Users\jarzu\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.2.10-hotspot"/>
+    <property name="java.home" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot"/>
     <property name="file.separator" value="\"/>
-    <property name="basedir" value="C:\Repos\proyecto-base-ut04"/>
+    <property name="basedir" value="C:\Users\emifa\OneDrive\Documentos\GitHub\problemsetsut3\proyecto_base_ut4"/>
     <property name="java.vm.compressedOopsMode" value="Zero based"/>
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\jarzu\AppData\Local\Temp\surefire3917693350800987417\surefirebooter-20260603195541388_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\emifa\AppData\Local\Temp\surefire7410530506260016276\surefirebooter-20260603230032323_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
-    <property name="java.runtime.version" value="25.0.2+10-LTS"/>
-    <property name="user.name" value="jarzu"/>
-    <property name="stdout.encoding" value="Cp1252"/>
+    <property name="java.runtime.version" value="17.0.18+8"/>
+    <property name="user.name" value="emifa"/>
     <property name="path.separator" value=";"/>
     <property name="os.version" value="10.0"/>
     <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
-    <property name="file.encoding" value="UTF-8"/>
+    <property name="file.encoding" value="Cp1252"/>
     <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
-    <property name="java.vendor.version" value="Temurin-25.0.2+10"/>
-    <property name="localRepository" value="C:\Users\jarzu\.m2\repository"/>
+    <property name="java.vendor.version" value="Temurin-17.0.18+8"/>
+    <property name="localRepository" value="C:\Users\emifa\.m2\repository"/>
     <property name="java.vendor.url.bug" value="https://github.com/adoptium/adoptium-support/issues"/>
-    <property name="java.io.tmpdir" value="C:\Users\jarzu\AppData\Local\Temp\"/>
-    <property name="java.version" value="25.0.2"/>
-    <property name="user.dir" value="C:\Repos\proyecto-base-ut04"/>
+    <property name="java.io.tmpdir" value="C:\Users\emifa\AppData\Local\Temp\"/>
+    <property name="java.version" value="17.0.18"/>
+    <property name="user.dir" value="C:\Users\emifa\OneDrive\Documentos\GitHub\problemsetsut3\proyecto_base_ut4"/>
     <property name="os.arch" value="amd64"/>
     <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
     <property name="sun.os.patch.level" value=""/>
     <property name="native.encoding" value="Cp1252"/>
-    <property name="java.library.path" value="C:\Users\jarzu\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.2.10-hotspot\bin;C:\Windows\Sun\Java\bin;C:\Windows\system32;C:\Windows;c:\Users\jarzu\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\jarzu\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\jarzu\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\jarzu\AppData\Local\Programs\Python\Python311\;C:\Users\jarzu\AppData\Local\Programs\Eclipse Adoptium\jdk-25.0.2.10-hotspot\bin;C:\Users\jarzu\AppData\Local\Microsoft\WindowsApps;C:\Users\jarzu\AppData\Local\Programs\Microsoft VS Code\bin;C:\Maven\apache-maven-3.9.13\bin;C:\Program Files\Git\bin;C:\Users\jarzu\AppData\Local\Microsoft\WinGet\Packages\Gyan.FFmpeg_Microsoft.Winget.Source_8wekyb3d8bbwe\ffmpeg-8.1.1-full_build\bin;C:\Users\jarzu\AppData\Roaming\npm;c:\Users\jarzu\.vscode\extensions\vscjava.vscode-java-debug-0.59.0\bundled\scripts\noConfigScripts;."/>
+    <property name="java.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin;C:\WINDOWS\Sun\Java\bin;C:\WINDOWS\system32;C:\WINDOWS;c:\Users\emifa\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\debugCommand;c:\Users\emifa\AppData\Roaming\Code\User\globalStorage\github.copilot-chat\copilotCli;C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin;C:\Program Files\Eclipse Adoptium\jdk-25.0.2.10-hotspot\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\NVIDIA Corporation\NVIDIA App\NvDLISR;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\dotnet\;C:\Program Files\Git\cmd;C:\Program Files\nodejs\;C:\Users\emifa\.local\bin;C:\Users\emifa\AppData\Local\Microsoft\WindowsApps;C:\Users\emifa\AppData\Local\Programs\Microsoft VS Code\bin;C:\ProgramData\emifa\GitHubDesktop\bin;C:\Users\emifa\AppData\Local\GitHubDesktop\bin;C:\Maven\bin;C:\Users\emifa\AppData\Local\Python\bin;C:\Users\emifa\AppData\Roaming\npm;c:\Users\emifa\.vscode\extensions\vscjava.vscode-java-debug-0.59.0\bundled\scripts\noConfigScripts;."/>
     <property name="java.vm.info" value="mixed mode, sharing"/>
-    <property name="stderr.encoding" value="Cp1252"/>
     <property name="java.vendor" value="Eclipse Adoptium"/>
-    <property name="java.vm.version" value="25.0.2+10-LTS"/>
-    <property name="stdin.encoding" value="Cp1252"/>
+    <property name="java.vm.version" value="17.0.18+8"/>
+    <property name="java.specification.maintenance.version" value="1"/>
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
-    <property name="java.class.version" value="69.0"/>
+    <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="dijkstraLanzaExcepcionSiExisteUnaAristaNegativaAlcanzable" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.024"/>
-  <testcase name="dijkstraNoLanzaExcepcionPorAristaNegativaNoAlcanzable" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.002"/>
-  <testcase name="dijkstraRespetaDireccionDeAristas" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.001"/>
+  <testcase name="dijkstraLanzaExcepcionSiExisteUnaAristaNegativaAlcanzable" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.033"/>
+  <testcase name="dijkstraNoLanzaExcepcionPorAristaNegativaNoAlcanzable" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.003"/>
+  <testcase name="dijkstraRespetaDireccionDeAristas" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.002"/>
   <testcase name="dijkstraCalculaCostosYCaminosMinimosDesdeElOrigen" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.001"/>
   <testcase name="dijkstraSoportaAristasConPesoCero" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.001"/>
   <testcase name="dijkstraConGrafoVacioLanzaExcepcion" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmDijkstraTest" time="0.001"/>
