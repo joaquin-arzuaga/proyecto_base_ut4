@@ -291,6 +291,29 @@ public class DirectedGraphTest {
         assertFalse(grafo.esConexo());
     }
 
+        @Test
+    public void testEsConexoGrafoVacio() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        assertTrue(grafo.esConexo());
+    }
+
+    @Test
+    public void testEsConexoUnVertice() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        grafo.agregarVertice("A");
+        assertTrue(grafo.esConexo());
+    }
+
+    @Test
+    public void testEsConexoVerticeAislado() {
+        DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
+        grafo.agregarVertice("A");
+        grafo.agregarVertice("B");
+        grafo.agregarVertice("C");
+        grafo.agregarArista("A", "B", new WeightedEdge(1.0));
+        assertFalse(grafo.esConexo());
+    }
+
     @Test
     public void testSuccessorsConAristasSalientes() {
         DirectedGraph<String, WeightedEdge> grafo = new DirectedGraph<>();
