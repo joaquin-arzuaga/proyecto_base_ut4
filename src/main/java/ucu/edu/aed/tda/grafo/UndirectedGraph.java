@@ -135,7 +135,8 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
             return null;
         }
         for (Edge<V, D> arista : aristas) {
-            if (sourceCriteria.compareTo(arista.source()) == 0 && targetCriteria.compareTo(arista.target()) == 0) {
+            if ((sourceCriteria.compareTo(arista.source()) == 0 && targetCriteria.compareTo(arista.target()) == 0)
+                    || (sourceCriteria.compareTo(arista.target()) == 0 && targetCriteria.compareTo(arista.source()) == 0)) {
                 return arista;
             }
         }
