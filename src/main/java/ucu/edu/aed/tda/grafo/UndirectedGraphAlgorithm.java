@@ -1,9 +1,13 @@
 package ucu.edu.aed.tda.grafo;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
 
 import ucu.edu.aed.tda.grafo.model.edge.Edge;
 import ucu.edu.aed.tda.grafo.model.edge.WeightedEdge;
@@ -52,6 +56,28 @@ public class UndirectedGraphAlgorithm implements IUndirectedGraphAlgorithm{
     //busqueda en amplitud
     @Override
     public <V, D> void bea(IUndirectedGraph<V, D> graph, java.util.function.Consumer<V> consumer) {
+        Set<V> visitados = new HashSet<>();
+        Queue<V> cola = new ArrayDeque<>();
+
+        for (V v : graph.vertices()) {
+            if (!visitados.contains(v)) {
+                cola.add(v);
+
+                while (!cola.isEmpty()) {
+                    V x = cola.poll();
+                    visitados.add(x);
+                    consumer.accept(x);
+
+                    for (var arista : graph.adyacencias(graph.construirComparable(x))) {
+                        V y = arista.target();
+                        if (!visitados.contains(y)) {
+                            cola.add(y);
+                            visitados.add(y);
+                        }
+                    }
+                }
+            }
+        }
     }
 
 }
