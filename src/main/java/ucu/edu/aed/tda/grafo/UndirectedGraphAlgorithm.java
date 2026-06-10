@@ -8,6 +8,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Queue;
 import java.util.Set;
+import java.util.function.Consumer;
 
 import ucu.edu.aed.tda.grafo.model.edge.Edge;
 import ucu.edu.aed.tda.grafo.model.edge.WeightedEdge;
@@ -55,7 +56,7 @@ public class UndirectedGraphAlgorithm implements IUndirectedGraphAlgorithm{
 
     //busqueda en amplitud
     @Override
-    public <V, D> void bea(IUndirectedGraph<V, D> graph, java.util.function.Consumer<V> consumer) {
+    public <V, D> void bea(IUndirectedGraph<V, D> graph, Consumer<V> consumer) {
         Set<V> visitados = new HashSet<>();
         Queue<V> cola = new ArrayDeque<>();
 
