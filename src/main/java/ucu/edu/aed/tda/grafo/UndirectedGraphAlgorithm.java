@@ -43,52 +43,56 @@ public class UndirectedGraphAlgorithm implements IUndirectedGraphAlgorithm{
     
     //prim
     @Override
-    public <V, D extends WeightedEdge> IUndirectedGraph<V, D> prim(IUndirectedGraph<V, D> graph, Comparable<V> source) {
-        IUndirectedGraph<V, D> arbol = new UndirectedGraph<>();
+public <V, D extends WeightedEdge> IUndirectedGraph<V, D> prim(IUndirectedGraph<V, D> graph, Comparable<V> source) {
+    IUndirectedGraph<V, D> arbol = new UndirectedGraph<>();
 
-        if (graph == null || source == null) {
-            return arbol;
-        }
-
-        V origen = graph.buscarVertice(source);
-
-        if (origen == null) {
-            return arbol;
-        }
-
-        for (V vertice : graph.vertices()) {
-            arbol.agregarVertice(vertice);
-        }
-
-        Set<V> visitados = new HashSet<>();
-        Set<V> noVisitados = new HashSet<>(graph.vertices());
-
-        visitados.add(origen);
-        noVisitados.remove(origen);
-
-        while (!noVisitados.isEmpty()) {
-            Edge<V, D> menorArista = searchMinEdge(graph, visitados, noVisitados);
-
-            if (menorArista == null) {
-                break;
-            }
-
-            arbol.agregarArista(menorArista.source(), menorArista.target(), menorArista.dato());
-
-            V nuevoVertice;
-
-            if (visitados.contains(menorArista.source())) {
-                nuevoVertice = menorArista.target();
-            } else {
-                nuevoVertice = menorArista.source();
-            }
-
-            visitados.add(nuevoVertice);
-            noVisitados.remove(nuevoVertice);
-        }
-
+    if (graph == null || source == null) {
         return arbol;
     }
+
+    V origen = graph.buscarVertice(source);
+
+    if (origen == null) {
+        return arbol;
+    }
+
+    for (V vertice : graph.vertices()) {
+        arbol.agregarVertice(vertice);
+    }
+
+    Set<V> visitados = new HashSet<>();
+    Set<V> noVisitados = new HashSet<>(graph.vertices());
+
+    visitados.add(origen);
+    noVisitados.remove(origen);
+
+    while (!noVisitados.isEmpty()) {
+        Edge<V, D> menorArista = searchMinEdge(graph, visitados, noVisitados);
+
+        if (menorArista == null) {
+            // no hay conexión desde lo visitado -> saltar a otra componente
+            V siguienteComponente = noVisitados.iterator().next();
+            visitados.add(siguienteComponente);
+            noVisitados.remove(siguienteComponente);
+            continue;
+        }
+
+        arbol.agregarArista(menorArista.source(), menorArista.target(), menorArista.dato());
+
+        V nuevoVertice;
+
+        if (visitados.contains(menorArista.source())) {
+            nuevoVertice = menorArista.target();
+        } else {
+            nuevoVertice = menorArista.source();
+        }
+
+        visitados.add(nuevoVertice);
+        noVisitados.remove(nuevoVertice);
+    }
+
+    return arbol;
+}
 
 
 
