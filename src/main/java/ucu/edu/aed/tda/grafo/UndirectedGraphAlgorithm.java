@@ -132,14 +132,14 @@ public <V, D extends WeightedEdge> IUndirectedGraph<V, D> prim(IUndirectedGraph<
         for (V v : graph.vertices()) {
             if (!visitados.contains(v)) {
                 cola.add(v);
+                visitados.add(v);
 
                 while (!cola.isEmpty()) {
                     V x = cola.poll();
-                    visitados.add(x);
                     consumer.accept(x);
 
                     for (var arista : graph.adyacencias(graph.construirComparable(x))) {
-                        V y = arista.target();
+                        V y = arista.source().equals(x) ? arista.target() : arista.source();
                         if (!visitados.contains(y)) {
                             cola.add(y);
                             visitados.add(y);
