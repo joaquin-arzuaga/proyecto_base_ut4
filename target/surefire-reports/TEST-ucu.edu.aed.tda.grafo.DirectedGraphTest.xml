@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.049" tests="38" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.043" tests="38" errors="0" skipped="0" failures="0">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -15,7 +15,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="user.country" value="UY"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Eclipse Adoptium\jdk-17.0.18.8-hotspot\bin"/>
-    <property name="sun.java.command" value="C:\Users\emifa\AppData\Local\Temp\surefire7410530506260016276\surefirebooter-20260603230032323_3.jar C:\Users\emifa\AppData\Local\Temp\surefire7410530506260016276 2026-06-03T23-00-31_066-jvmRun1 surefire-20260603230032323_1tmp surefire_0-20260603230032323_2tmp"/>
+    <property name="sun.java.command" value="C:\Users\emifa\AppData\Local\Temp\surefire13965638857618223269\surefirebooter-20260603232421918_3.jar C:\Users\emifa\AppData\Local\Temp\surefire13965638857618223269 2026-06-03T23-24-21_742-jvmRun1 surefire-20260603232421918_1tmp surefire_0-20260603232421918_2tmp"/>
     <property name="jdk.debug" value="release"/>
     <property name="surefire.test.class.path" value="C:\Users\emifa\OneDrive\Documentos\GitHub\problemsetsut3\proyecto_base_ut4\target\test-classes;C:\Users\emifa\OneDrive\Documentos\GitHub\problemsetsut3\proyecto_base_ut4\target\classes;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter\5.10.2\junit-jupiter-5.10.2.jar;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter-api\5.10.2\junit-jupiter-api-5.10.2.jar;C:\Users\emifa\.m2\repository\org\opentest4j\opentest4j\1.3.0\opentest4j-1.3.0.jar;C:\Users\emifa\.m2\repository\org\junit\platform\junit-platform-commons\1.10.2\junit-platform-commons-1.10.2.jar;C:\Users\emifa\.m2\repository\org\apiguardian\apiguardian-api\1.1.2\apiguardian-api-1.1.2.jar;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter-params\5.10.2\junit-jupiter-params-5.10.2.jar;C:\Users\emifa\.m2\repository\org\junit\jupiter\junit-jupiter-engine\5.10.2\junit-jupiter-engine-5.10.2.jar;C:\Users\emifa\.m2\repository\org\junit\platform\junit-platform-engine\1.10.2\junit-platform-engine-1.10.2.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
@@ -30,7 +30,7 @@
     <property name="line.separator" value="&#10;"/>
     <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
     <property name="java.specification.name" value="Java Platform API Specification"/>
-    <property name="surefire.real.class.path" value="C:\Users\emifa\AppData\Local\Temp\surefire7410530506260016276\surefirebooter-20260603230032323_3.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\emifa\AppData\Local\Temp\surefire13965638857618223269\surefirebooter-20260603232421918_3.jar"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
     <property name="java.runtime.version" value="17.0.18+8"/>
@@ -58,42 +58,42 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="testAgregarVerticeNuevo" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.002"/>
+  <testcase name="testAgregarVerticeNuevo" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testGradoDeEntradaUsaPredecessors" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.002"/>
-  <testcase name="testSuccessorsSinAristasSalientes" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
+  <testcase name="testSuccessorsSinAristasSalientes" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
   <testcase name="testEsConexoUnVertice" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.002"/>
-  <testcase name="testEsConexoGrafoVacio" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
+  <testcase name="testEsConexoGrafoVacio" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
   <testcase name="testRecorridoEnProfundidadNoVisitaDesconectado" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.002"/>
-  <testcase name="testAdyacenciasDeVerticeExistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
-  <testcase name="testObtenerTodosLosCaminos" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
-  <testcase name="testNoTieneCiclos" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testAdyacenciasDeVerticeExistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testObtenerTodosLosCaminos" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.002"/>
+  <testcase name="testNoTieneCiclos" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testObtenerAristaExistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
-  <testcase name="testAgregarAristaDuplicada" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
-  <testcase name="testPredecessorsCriterioNull" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
-  <testcase name="testPredecessorsConAristasEntrantes" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testAgregarAristaDuplicada" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testPredecessorsCriterioNull" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testPredecessorsConAristasEntrantes" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testExisteAristaRespetaDireccion" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testTieneCiclos" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
-  <testcase name="testAgregarAristaConOrigenInexistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testAgregarAristaConOrigenInexistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testAgregarVerticeNull" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
-  <testcase name="testTieneCicloConAutoArista" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
-  <testcase name="testAgregarAristaConDestinoInexistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
+  <testcase name="testTieneCicloConAutoArista" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testAgregarAristaConDestinoInexistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
   <testcase name="testEsConexoVerticeAislado" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testSuccessorsCriterioNull" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testPredecessorsVerticeInexistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
   <testcase name="testAgregarAristaConDatoNull" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
-  <testcase name="testAgregarVerticeDuplicado" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testAgregarVerticeDuplicado" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testAdyacenciasConCriterioNullRetornaListaVacia" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
   <testcase name="testRecorridoEnProfundidad" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
-  <testcase name="testAdyacenciasDeVerticeInexistenteRetornaListaVacia" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testAdyacenciasDeVerticeInexistenteRetornaListaVacia" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testPredecessorsSinAristasEntrantes" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
-  <testcase name="testAgregarAristaValida" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
+  <testcase name="testAgregarAristaValida" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testSuccessorsVerticeInexistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
   <testcase name="testNoEsConexo" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
   <testcase name="testSuccessorsConAristasSalientes" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
   <testcase name="testEsConexo" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
   <testcase name="testBuscarVerticeExistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
   <testcase name="testGradoDeSalidaUsaSuccessors" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
-  <testcase name="testVaciar" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
-  <testcase name="testEliminarAristaInexistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
-  <testcase name="testEliminarAristaExistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
+  <testcase name="testVaciar" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
+  <testcase name="testEliminarAristaInexistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.001"/>
+  <testcase name="testEliminarAristaExistente" classname="ucu.edu.aed.tda.grafo.DirectedGraphTest" time="0.0"/>
 </testsuite>
