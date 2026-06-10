@@ -95,22 +95,32 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
         if (criteria == null) {
             return false;
         }
+        
         V vertice = buscarVertice(criteria);
+        
+        if (vertice == null || !ListaAdyacencia.containsKey(vertice)) {
+            return false;
+        }
+        
         Set<Edge<V, D>> aristasSalientesDelVertice = new HashSet<>(ListaAdyacencia.get(vertice));
+        
         for (Edge<V, D> arista : aristasSalientesDelVertice) {
+            V otroVertice;
+            if (arista.source().equals(vertice)) {
+                otroVertice = arista.target();
+            } else {
+                otroVertice = arista.source();
+            }
+            
+            if (ListaAdyacencia.containsKey(otroVertice)) {
+                ListaAdyacencia.get(otroVertice).remove(arista);
+            }
+            
             aristas.remove(arista);
         }
+        
         ListaAdyacencia.remove(vertice);
-        for (Set<Edge<V, D>> adyacentes : ListaAdyacencia.values()) {
-            Set<Edge<V, D>> adyacenteAEliminar = new HashSet<>();
-            for (Edge<V, D> arista : adyacentes) {
-                if (arista.target().equals(vertice)) {
-                    adyacenteAEliminar.add(arista);
-                    aristas.remove(arista);
-                }
-            }
-            adyacentes.removeAll(adyacenteAEliminar);
-        }
+        
         return true;
     }
 
@@ -177,40 +187,45 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
     @Override
     public boolean tieneCiclos() {
         Set<V> visitados = new HashSet<>();
+        Set<Edge<V, D>> aristasVisitadas = new HashSet<>();
         
-
         for (V vertice : ListaAdyacencia.keySet()) {
             if (!visitados.contains(vertice)) {
-                if (tieneCiclosDesde(vertice, null, visitados )) {
+                if (tieneCiclosDesde(vertice, null, visitados, aristasVisitadas)) {
                     return true;
                 }
             }
         }
-
+        
         return false;
     }
 
-    private boolean tieneCiclosDesde(V vertice, V verticePadre ,Set<V> visitados) {
+    private boolean tieneCiclosDesde(V vertice, V verticePadre, Set<V> visitados, Set<Edge<V, D>> aristasVisitadas) {
         visitados.add(vertice);
-
+        
         for (Edge<V, D> arista : ListaAdyacencia.get(vertice)) {
-             V verticeSiguiente;
+            V verticeSiguiente;
             if (arista.source().equals(vertice)) {
                 verticeSiguiente = arista.target();
             } else {
                 verticeSiguiente = arista.source();
             }
+            
+            if (aristasVisitadas.contains(arista)) {
+                continue;
+            }
+            
+            aristasVisitadas.add(arista);
+            
             if (!visitados.contains(verticeSiguiente)) {
-
-                if (tieneCiclosDesde(verticeSiguiente, vertice, visitados)) {
+                if (tieneCiclosDesde(verticeSiguiente, vertice, visitados, aristasVisitadas)) {
                     return true;
                 }
             } else if (!verticeSiguiente.equals(verticePadre)) {
-            return true;
+                return true;
             }
         }
-
-       
+        
         return false;
     }
 
