@@ -50,7 +50,27 @@ public class UndirectedGraphAlgorithm implements IUndirectedGraphAlgorithm{
     //minima arista
     @Override
     public <V, D extends WeightedEdge> Edge<V, D> searchMinEdge(IUndirectedGraph<V, D> graph, Collection<V> U, Collection<V> V) {
-        return null;
+        if(graph == null || U == null || V == null || U.isEmpty() || V.isEmpty()){
+            return null;
+        }
+        Edge<V, D> mejorArista = null;
+        for (V u : U) {
+            for (Edge<V, D> arista : graph.adyacencias(graph.construirComparable(u))){
+                V noVisitado = null;
+                if(arista.source().equals(u)){
+                    noVisitado = arista.target();
+                }
+                else if(arista.target().equals(u)){
+                    noVisitado = arista.source();
+                }
+                if (V.contains(noVisitado)) {
+                    if (mejorArista == null || arista.dato().getWeight() < mejorArista.dato().getWeight()) {
+                        mejorArista = arista;
+                    }
+                }
+            }
+        }
+        return mejorArista;
     }
 
     //busqueda en amplitud
