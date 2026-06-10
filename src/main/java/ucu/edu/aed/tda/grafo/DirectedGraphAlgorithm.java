@@ -22,7 +22,6 @@ import ucu.edu.aed.tda.grafo.model.result.Path;
 import ucu.edu.aed.tda.grafo.model.result.FloydWarshallResult;
 import ucu.edu.aed.tda.grafo.model.result.DijkstraResult;
 
-
 public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
 
     @Override
@@ -114,7 +113,7 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
     @Override
     public <V, D extends WeightedEdge> IFloydWarshallResult<V> warshall(IDirectedIGraph<V, D> grafo) {
         Map<V, Map<V, Double>> costs = new HashMap<>();
-        Map<V, Map<V, V>>      next  = new HashMap<>();
+        Map<V, Map<V, V>> next = new HashMap<>();
 
         for (V v : grafo.vertices()) {
             costs.put(v, new HashMap<>());
@@ -192,7 +191,8 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
     }
 
     @Override
-    public <V, D extends WeightedEdge> double obtenerExcentricidad(IDirectedIGraph<V, D> grafo, Comparable<V> vertexCriteria) {
+    public <V, D extends WeightedEdge> double obtenerExcentricidad(IDirectedIGraph<V, D> grafo,
+            Comparable<V> vertexCriteria) {
         V vertice = grafo.buscarVertice(vertexCriteria);
         if (vertice == null) {
             throw new IllegalArgumentException("El vertice no existe en el grafo");
@@ -209,13 +209,13 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
     @Override
     public <V, D extends WeightedEdge> List<Path<V>> obtenerTodosLosCaminos(Comparable<V> source, Comparable<V> target,
             IGraph<V, D> grafo) {
-        
+
         List<Path<V>> caminos = new LinkedList<>();
         V origen = grafo.buscarVertice(source);
         V destino = grafo.buscarVertice(target);
 
         if (origen == null || destino == null) {
-        return caminos;
+            return caminos;
         }
 
         LinkedList<V> caminoActual = new LinkedList<>();
@@ -225,18 +225,18 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
     }
 
     private <V, D extends WeightedEdge> void buscarCaminos(V actual, V destino, IGraph<V, D> grafo,
-        LinkedList<V> caminoActual, Set<V> visitados, List<Path<V>> caminos, double costo) {
+            LinkedList<V> caminoActual, Set<V> visitados, List<Path<V>> caminos, double costo) {
         caminoActual.add(actual);
         visitados.add(actual);
 
         if (actual.equals(destino)) {
-        caminos.add(new Path<V>(new LinkedList<V>(caminoActual), costo));
+            caminos.add(new Path<V>(new LinkedList<V>(caminoActual), costo));
         } else {
             for (Edge<V, D> arista : grafo.adyacencias(grafo.construirComparable(actual))) {
-            V siguiente = arista.target();
-            if (!visitados.contains(siguiente)) {
-                buscarCaminos(siguiente, destino, grafo, caminoActual, visitados, caminos,
-                        costo + arista.dato().getWeight());
+                V siguiente = arista.target();
+                if (!visitados.contains(siguiente)) {
+                    buscarCaminos(siguiente, destino, grafo, caminoActual, visitados, caminos,
+                            costo + arista.dato().getWeight());
                 }
             }
         }
@@ -245,25 +245,24 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
         visitados.remove(actual);
     }
 
-
     @Override
     public <V, D> void recorridoEnProfundidad(IGraph<V, D> grafo, Comparable<V> sourceCriteria, Consumer<V> consumer) {
         Deque<V> vecinos = new LinkedList<V>();
         HashSet<V> visitados = new HashSet<V>();
 
-        visitados.add(grafo.buscarVertice(sourceCriteria));
-        vecinos.add(grafo.buscarVertice(sourceCriteria));
-        while (vecinos.size() != 0)
-        {
+        V inicio = grafo.buscarVertice(sourceCriteria);
+        visitados.add(inicio);
+        vecinos.add(inicio);
+        while (vecinos.size() != 0) {
             V vertice = vecinos.pop();
             for (Edge<V, D> ver : grafo.adyacencias(grafo.construirComparable(vertice))) {
-                if (!visitados.contains(ver.target()))
-                {
-                    vecinos.add(ver.target());
+                V vecino = ver.source().equals(vertice) ? ver.target() : ver.source();
+                if (!visitados.contains(vecino)) {
+                    vecinos.add(vecino);
+                    visitados.add(vecino);
                 }
             }
             consumer.accept(vertice);
-            visitados.add(vertice);
         }
     }
 
@@ -274,12 +273,10 @@ public class DirectedGraphAlgorithm implements IDirectedGraphAlgorithms {
 
         visitados.add(grafo.buscarVertice(sourceCriteria));
         vecinos.add(grafo.buscarVertice(sourceCriteria));
-        while (vecinos.size() != 0)
-        {
+        while (vecinos.size() != 0) {
             V vertice = vecinos.poll();
             for (Edge<V, D> ver : grafo.adyacencias(grafo.construirComparable(vertice))) {
-                if (!visitados.contains(ver.target()))
-                {
+                if (!visitados.contains(ver.target())) {
                     vecinos.add(ver.target());
                 }
             }
