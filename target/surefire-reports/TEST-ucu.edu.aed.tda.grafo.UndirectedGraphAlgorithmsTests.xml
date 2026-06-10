@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.023" tests="10" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.042" tests="13" errors="3" skipped="0" failures="1">
   <properties>
     <property name="java.specification.version" value="17"/>
     <property name="sun.cpu.isalist" value="amd64"/>
@@ -58,14 +58,51 @@
     <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
     <property name="java.class.version" value="61.0"/>
   </properties>
-  <testcase name="floydSoportaPesosNegativosSinCicloNegativo" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.003"/>
-  <testcase name="floydReportaConectividadCorrectamente" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.004"/>
-  <testcase name="floydRespetaDireccionDeAristas" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.001"/>
-  <testcase name="floydCalculaCostosYCaminosMinimosEntreTodosLosPares" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.001"/>
-  <testcase name="floydSoportaAristasConPesoCero" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.0"/>
-  <testcase name="floydConUnSoloVertice" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.0"/>
-  <testcase name="floydConVerticesInexistentesRetornaInfinitoYCaminoVacio" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.001"/>
-  <testcase name="floydConGrafoVacioNoFalla" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.001"/>
-  <testcase name="floydPuedeMejorarUnCaminoDirectoUsandoVerticesIntermedios" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.0"/>
-  <testcase name="floydMantieneCostoCeroHaciaElMismoVerticeAunqueExistaAutoAristaPositiva" classname="ucu.edu.aed.tda.grafo.DirectedGraphAlgorithmFloydTest" time="0.001"/>
+  <testcase name="kruskalRecievesGraphWithOneNode" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.006"/>
+  <testcase name="primNormal" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.012">
+    <error message="Cannot invoke &quot;ucu.edu.aed.tda.grafo.IUndirectedGraph.aristas()&quot; because &quot;prim&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "ucu.edu.aed.tda.grafo.IUndirectedGraph.aristas()" because "prim" is null
+	at ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests.primNormal(UndirectedGraphAlgorithmsTests.java:108)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+]]></error>
+  </testcase>
+  <testcase name="kruskalRecievesEmptyGraph" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.0"/>
+  <testcase name="searchMinEdgeVacio" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.001"/>
+  <testcase name="beaGrafoVacio" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.001"/>
+  <testcase name="primArbolDesconectado" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.001">
+    <error message="Cannot invoke &quot;ucu.edu.aed.tda.grafo.IUndirectedGraph.vertices()&quot; because &quot;prim&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "ucu.edu.aed.tda.grafo.IUndirectedGraph.vertices()" because "prim" is null
+	at ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests.primArbolDesconectado(UndirectedGraphAlgorithmsTests.java:126)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+]]></error>
+  </testcase>
+  <testcase name="primRecievesGraphWithOneNode" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.002">
+    <error message="Cannot invoke &quot;ucu.edu.aed.tda.grafo.IUndirectedGraph.aristas()&quot; because &quot;prim&quot; is null" type="java.lang.NullPointerException"><![CDATA[java.lang.NullPointerException: Cannot invoke "ucu.edu.aed.tda.grafo.IUndirectedGraph.aristas()" because "prim" is null
+	at ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests.primRecievesGraphWithOneNode(UndirectedGraphAlgorithmsTests.java:98)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+]]></error>
+  </testcase>
+  <testcase name="beaVisitaTodosUnaVez" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.001"/>
+  <testcase name="primArbolVacio" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.003">
+    <failure message="expected: not &lt;null&gt;" type="org.opentest4j.AssertionFailedError"><![CDATA[org.opentest4j.AssertionFailedError: expected: not <null>
+	at org.junit.jupiter.api.AssertionFailureBuilder.build(AssertionFailureBuilder.java:152)
+	at org.junit.jupiter.api.AssertionFailureBuilder.buildAndThrow(AssertionFailureBuilder.java:132)
+	at org.junit.jupiter.api.AssertNotNull.failNull(AssertNotNull.java:49)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:35)
+	at org.junit.jupiter.api.AssertNotNull.assertNotNull(AssertNotNull.java:30)
+	at org.junit.jupiter.api.Assertions.assertNotNull(Assertions.java:304)
+	at ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests.primArbolVacio(UndirectedGraphAlgorithmsTests.java:87)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511)
+]]></failure>
+  </testcase>
+  <testcase name="kruskalNormal" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.0"/>
+  <testcase name="searchMinEdgeNull" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.0"/>
+  <testcase name="searchMinEdgeNormal" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.0"/>
+  <testcase name="kruskalArbolDesconectado" classname="ucu.edu.aed.tda.grafo.UndirectedGraphAlgorithmsTests" time="0.001"/>
 </testsuite>

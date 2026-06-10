@@ -62,7 +62,7 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
     public boolean agregarArista(V source, V target, D dato) {
         if (source != null && target != null && dato != null) {
             if (ListaAdyacencia.containsKey(source) && ListaAdyacencia.containsKey(target)) {
-                
+
                 Edge<V, D> arista = new UndirectedEdge<>(source, target, dato);
 
                 if (!aristas.contains(arista)) {
@@ -95,15 +95,15 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
         if (criteria == null) {
             return false;
         }
-        
+
         V vertice = buscarVertice(criteria);
-        
+
         if (vertice == null || !ListaAdyacencia.containsKey(vertice)) {
             return false;
         }
-        
+
         Set<Edge<V, D>> aristasSalientesDelVertice = new HashSet<>(ListaAdyacencia.get(vertice));
-        
+
         for (Edge<V, D> arista : aristasSalientesDelVertice) {
             V otroVertice;
             if (arista.source().equals(vertice)) {
@@ -111,16 +111,16 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
             } else {
                 otroVertice = arista.source();
             }
-            
+
             if (ListaAdyacencia.containsKey(otroVertice)) {
                 ListaAdyacencia.get(otroVertice).remove(arista);
             }
-            
+
             aristas.remove(arista);
         }
-        
+
         ListaAdyacencia.remove(vertice);
-        
+
         return true;
     }
 
@@ -146,7 +146,8 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
         }
         for (Edge<V, D> arista : aristas) {
             if ((sourceCriteria.compareTo(arista.source()) == 0 && targetCriteria.compareTo(arista.target()) == 0)
-                    || (sourceCriteria.compareTo(arista.target()) == 0 && targetCriteria.compareTo(arista.source()) == 0)) {
+                    || (sourceCriteria.compareTo(arista.target()) == 0
+                            && targetCriteria.compareTo(arista.source()) == 0)) {
                 return arista;
             }
         }
@@ -188,7 +189,7 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
     public boolean tieneCiclos() {
         Set<V> visitados = new HashSet<>();
         Set<Edge<V, D>> aristasVisitadas = new HashSet<>();
-        
+
         for (V vertice : ListaAdyacencia.keySet()) {
             if (!visitados.contains(vertice)) {
                 if (tieneCiclosDesde(vertice, null, visitados, aristasVisitadas)) {
@@ -196,13 +197,13 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
                 }
             }
         }
-        
+
         return false;
     }
 
     private boolean tieneCiclosDesde(V vertice, V verticePadre, Set<V> visitados, Set<Edge<V, D>> aristasVisitadas) {
         visitados.add(vertice);
-        
+
         for (Edge<V, D> arista : ListaAdyacencia.get(vertice)) {
             V verticeSiguiente;
             if (arista.source().equals(vertice)) {
@@ -210,13 +211,13 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
             } else {
                 verticeSiguiente = arista.source();
             }
-            
+
             if (aristasVisitadas.contains(arista)) {
                 continue;
             }
-            
+
             aristasVisitadas.add(arista);
-            
+
             if (!visitados.contains(verticeSiguiente)) {
                 if (tieneCiclosDesde(verticeSiguiente, vertice, visitados, aristasVisitadas)) {
                     return true;
@@ -225,11 +226,8 @@ public class UndirectedGraph<V, D> implements IUndirectedGraph<V, D> {
                 return true;
             }
         }
-        
+
         return false;
     }
-
-   
-
 
 }
